@@ -35,6 +35,19 @@ var config = {
 
 };
 
+if(ENV==="test") {
+  config.entry = "./test/index.js";
+  config.output = {
+    path: path.join(__dirname, 'test'),
+    filename: 'bundle.js',
+    publicPath: '/test/'
+  };
+  config.module.rules[0].include = [
+    path.resolve(__dirname, "test"),
+    path.resolve(__dirname, "dist")
+  ];
+}
+
 if(ENV==="build-min") {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     compress: {

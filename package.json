@@ -4,7 +4,7 @@
   "description": "A simple javascript framework. Support reusable Components. Write by ES6.",
   "main": "dist/tiny.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=test webpack",
     "build": "cross-env NODE_ENV=build webpack ",
     "build-min":"cross-env NODE_ENV=build-min webpack",
     "clean": "rm -drf ./dist && mkdir dist"
