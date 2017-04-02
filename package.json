@@ -1,5 +1,5 @@
 {
-  "name": "Tiny",
+  "name": "tiny",
   "version": "0.0.1",
   "description": "A simple javascript framework. Support reusable Components. Write by ES6.",
   "main": "dist/tiny.js",
