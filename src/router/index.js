@@ -62,7 +62,7 @@ class Rule {
     });
     // 当没有任何规则匹配时
     if (count === 0) {
-      this.otherwise();
+      this.otherwise(url);
     }
   }
 }
@@ -93,6 +93,7 @@ class Route {
       this._hashChangeHandler();
     }
     window.onhashchange = this._hashChangeHandler;
+    return this;
   }
   /**
    * 注册一个URL规则
@@ -121,6 +122,7 @@ class Route {
    */
   go(url) {
     location.hash = this.defaultBase + url;
+    return this;
   }
 }
 
