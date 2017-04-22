@@ -1,3 +1,7 @@
+import q from './http/index';
+import observable from './observable';
+import route from './router/index';
+
 let Ti = {};
 // 管理组件实例
 Ti.instances = [];
@@ -37,5 +41,9 @@ Ti.mount = function(instance, mountTo){
 Ti.template = function(tpl, data) {
   return tpl;
 };
+
+Ti.$http = q;
+Ti.observable = observable;
+Ti.route = route;
 
 export default Ti;

@@ -81,7 +81,7 @@ class Component {
     let arr = parent.html.match(/<child\s+tag=["|'].*["|'][\s\S]*?\/>/g);
 
     if(arr) {
-      arr.forEach((childStr)=>{
+      arr.forEach((childStr) => {
         let attr = html.html2object(childStr);
         let name = attr.tag;
         delete attr.tag;
@@ -117,7 +117,7 @@ class Component {
         subClass.mount();
         parent.children.push(subClass);
         subClass._render();
-
+        
       });
     }
   }

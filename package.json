@@ -4,9 +4,10 @@
   "description": "A simple javascript framework. Support reusable Components. Write by ES6.",
   "main": "dist/tiny.js",
   "scripts": {
+    "async:http":"cp -a ./src/http/** ../tiny-http/src/",
     "test": "cross-env NODE_ENV=test webpack",
     "build": "cross-env NODE_ENV=build webpack ",
-    "build-min":"cross-env NODE_ENV=build-min webpack",
+    "build-min": "cross-env NODE_ENV=build-min webpack",
     "clean": "rm -drf ./dist && mkdir dist"
   },
   "repository": {
@@ -23,20 +24,24 @@
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
-    "babel-polyfill": "^6.23.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-stage-2": "^6.22.0",
     "cross-env": "^3.2.4",
     "css-loader": "^0.27.3",
     "extract-text-webpack-plugin": "^2.1.0",
+    "html-loader": "^0.4.5",
     "html-webpack-plugin": "^2.28.0",
     "nib": "^1.1.2",
-    "style-loader": "^0.16.0",
+    "string-loader": "0.0.1",
+    "style-loader": "^0.16.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2"
+    "webpack": "^2.3.2"
   },
   "author": "jeffwang <cunxuanwang@163.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "art-template": "^4.1.0"
+  }
 }

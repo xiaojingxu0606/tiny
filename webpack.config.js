@@ -31,7 +31,12 @@ var config = {
     new webpack.BannerPlugin(packageJSON.name
       + " v"+ packageJSON.version
       + "\r\nauthor "+ packageJSON.author)
-  ]
+  ],
+  resolve: {
+    alias: {
+      'artTemplate': 'art-template/lib/template-web.js'
+    }
+  }
 
 };
 
@@ -46,6 +51,16 @@ if(ENV==="test") {
     path.resolve(__dirname, "test"),
     path.resolve(__dirname, "dist")
   ];
+  config.module.rules.push({
+    test: /\.html$/,
+    use: ['html-loader']
+  }, {
+    test: /\.css$/,
+    use: ['string-loader']
+  }, {
+    test: /\.styl$/,
+    loader: 'string-loader!stylus-loader'
+  });
 }
 
 if(ENV==="build-min") {

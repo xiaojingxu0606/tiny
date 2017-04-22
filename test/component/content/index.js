@@ -1,5 +1,6 @@
 import Ti from "../../../dist/tiny.js";
-
+import html from './index.html';
+import css from './index.styl';
 
 class Content extends Ti.Component{
   constructor(data) {
@@ -18,24 +19,10 @@ class Content extends Ti.Component{
 
   }
   style() {
-    return  `
-    .content {
-      position: absolute;
-      top: 50px;
-      left: 0;
-      padding: 30px;
-    }
-    `;
+    return css;
   }
   render() {
-    return `
-    <div class="content">
-      <ul>
-      ${this.data.list.map(item => `<li onclick="handleClick(event)">${item}</li>`).join('')}
-      </ul>
-      <input type="text" onkeydown="add(event, this)" />
-    </div>
-    `;
+    return html;
   }
 
 }

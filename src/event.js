@@ -6,7 +6,7 @@ function scopeEvent(tpl, id) {
         if(c.indexOf('Ti.instances[') === 1) {
           return a;
         } else {
-          return a.replace(/=(['|"])/, '=$1Ti.instances[' + id + '].');
+          return a.replace(/=(['"])/, '=$1Ti.instances[' + id + '].');
         }
       });
     });

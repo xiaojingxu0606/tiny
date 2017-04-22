@@ -17,7 +17,7 @@ class App extends Ti.Component {
   style() {
     return `
     #container {
-      position: position;
+      position: absolute;
       top:0px;
       left:0px;
       width: 100%;
@@ -31,6 +31,7 @@ class App extends Ti.Component {
     <div id="container">
     <Head data-logo="Tiny" />
     <Content data="list" />
+    <p style="margin-top: 200px;">{{name}}</p>
     <Foot />
     </div>
     `;
@@ -38,4 +39,18 @@ class App extends Ti.Component {
 
 }
 
-Ti.mount(new App(), "body");
+Ti.$http.get('/get', {responseType: 'json'})
+.then(function(response) {
+  const app = new App(response.data);
+  Ti.mount(app, "body");
+})
+.catch(function(err){
+  console.log(err);
+});
+
+
+
+
+
+
+

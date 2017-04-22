@@ -1,4 +1,6 @@
 import Ti from "../../../dist/tiny.js";
+import html from './index.html';
+import css from './index.styl';
 
 class Footer extends Ti.Component {
   constructor(data) {
@@ -6,25 +8,10 @@ class Footer extends Ti.Component {
   }
 
   style() {
-    return `
-    .footer {
-      width: 100%;
-      position: absolute;
-      left: 0px;
-      bottom: 0px;
-      height: 50px;
-      background-color:#000;
-      color: #fff;
-      text-align:center;
-      font-size: 14px;
-      line-height: 50px;
-    }
-    `;
+    return css;
   }
   render() {
-    return `
-    <div class="footer">@Copyright 2017 jeffwang</div>
-    `;
+    return html;
   }
 
 }
