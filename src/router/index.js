@@ -7,14 +7,6 @@ function regexpEscape(str) {
   return str.replace(escapeReg, '\\$&');
 }
 
-function getRealPath(hash) {
-  const index = hash.indexOf(defaultBase);
-  if (index >= 0) {
-    return hash.slice(index + defaultBase.length);
-  }
-  return hash;
-}
-
 /** class Rule 路由规则类 */
 class Rule {
   /**
@@ -79,11 +71,20 @@ class Rule {
 class Route {
   constructor() {
     this.rule = new Rule();
+    this.defaultBase = this.rule.defaultBase;
   }
   _hashChangeHandler() {
-    const url = getRealPath(location.hash);
+    const url = this._getRealPath(location.hash);
     this.rule.trigger(encodeURI(url));
   }
+
+  _getRealPath(hash) {
+  const index = hash.indexOf(this.defaultBase);
+  if (index >= 0) {
+    return hash.slice(index + this.defaultBase.length);
+  }
+  return hash;
+}
   /**
    * 路由注册完成之后须记得start
    */
@@ -100,7 +101,7 @@ class Route {
    * @return {Route} 返回当前对象,可进行链式调用
    */
   when(url, callback) {
-    if (url.indexOf(defaultBase) >= 0) throw new Error(`Can not use ${defaultBase}`);
+    if (url.indexOf(this.defaultBase) >= 0) throw new Error(`Can not use ${defaultBase}`);
     this.rule.on(url, func);
     return this;
   }
@@ -119,7 +120,7 @@ class Route {
    * @param {String} url 
    */
   go(url) {
-    location.hash = this.rule.defaultBase + url;
+    location.hash = this.defaultBase + url;
   }
 }
 
