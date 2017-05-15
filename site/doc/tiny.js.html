@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tiny.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Http.html">Http</a><ul class='methods'><li data-type='method'><a href="Http.html#get/delete/head/options/jsonp">get/delete/head/options/jsonp</a></li><li data-type='method'><a href="Http.html#post/put/patch">post/put/patch</a></li><li data-type='method'><a href="Http.html#request">request</a></li></ul></li><li><a href="Interceptor.html">Interceptor</a><ul class='methods'><li data-type='method'><a href="Interceptor.html#reject">reject</a></li><li data-type='method'><a href="Interceptor.html#resovle">resovle</a></li></ul></li><li><a href="Ti.Component.html">Component</a><ul class='methods'><li data-type='method'><a href="Ti.Component.html#afterUpdate">afterUpdate</a></li><li data-type='method'><a href="Ti.Component.html#beforeRender">beforeRender</a></li><li data-type='method'><a href="Ti.Component.html#beforeUpdate">beforeUpdate</a></li><li data-type='method'><a href="Ti.Component.html#destory">destory</a></li><li data-type='method'><a href="Ti.Component.html#mount">mount</a></li><li data-type='method'><a href="Ti.Component.html#mounted">mounted</a></li><li data-type='method'><a href="Ti.Component.html#render">render</a></li><li data-type='method'><a href="Ti.Component.html#style">style</a></li><li data-type='method'><a href="Ti.Component.html#umount">umount</a></li><li data-type='method'><a href="Ti.Component.html#update">update</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="Ti.html">Ti</a><ul class='members'><li data-type='member'><a href="Ti.html#.$http">$http</a></li><li data-type='member'><a href="Ti.html#.$http.Interceptor">$http.Interceptor</a></li><li data-type='member'><a href="Ti.html#.$route">$route</a></li><li data-type='member'><a href="Ti.html#.template">template</a></li></ul><ul class='methods'><li data-type='method'><a href="Ti.html#.$observable">$observable</a></li><li data-type='method'><a href="Ti.html#.$route.go">$route.go</a></li><li data-type='method'><a href="Ti.html#.$route.otherwise">$route.otherwise</a></li><li data-type='method'><a href="Ti.html#.$route.when">$route.when</a></li><li data-type='method'><a href="Ti.html#.direcitve">direcitve</a></li><li data-type='method'><a href="Ti.html#.makeTag">makeTag</a></li><li data-type='method'><a href="Ti.html#.mount">mount</a></li><li data-type='method'><a href="Ti.html#.use">use</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">tiny.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * 命名空间**Ti**
+ * 组件类Component挂载在该命名空间上
+ * @namespace Ti
+ */
+let Ti = {};
+// 管理组件实例
+Ti.instances = [];
+Ti._instanceId = 0;
+Ti.assignInstanceId = function(){
+  return Ti._instanceId++;
+};
+
+Ti._removeInstance = function(id) {
+  Ti.instances[id] = null;
+};
+
+Ti.COMPONENTSCOPEPREFIX = 'scope_';
+Ti.STYLEPREFIX = 'style_';
+
+// HTML定制标签
+Ti.customTags = [];
+Ti.componentConstructor = {};
+
+/**
+ * 方法**Ti.makeTag**
+ * 将子组件制成标签使其可以内置在父组件中
+ * @method Ti.makeTag
+ * @param {Ti.Component} component 需要制成自定义标签的组件
+ * @param {String} name 自定义标签名
+ * @example
+ * Ti.makeTag(Head, "Head");
+ * 
+ * &lt;Head component="Head" data-logo="TodoList" />
+ *    &lt;Content component="Content" data="list" />
+ *  &lt;Foot />
+ */
+Ti.makeTag = function(component, name){
+  Ti.componentConstructor[name] = component;
+  Ti.customTags.push(name);
+};
+
+// 通过实例名获取构造器
+Ti.getClass = function(name){
+  return Ti.componentConstructor[name];
+};
+
+/**
+ * 方法**Ti.mount**
+ * 将组件挂在在真实的DOM节点中
+ * @method Ti.mount
+ * @param {Object} instance 组件实例对象
+ * @param {String|HTMLElement} mountTo 组件所加载到目标节点
+ * @example
+ * const app = new App(response.data);
+ * Ti.mount(app, "body");
+ */
+Ti.mount = function(instance, mountTo){
+  instance.mountTo = typeof mountTo === 'string'
+  ? Ti.$(mountTo) : mountTo;
+  instance.mount();
+  instance._render(true);
+  instance._childrenMounted(instance);
+  instance.mounted();
+  return instance;
+};
+
+// 模板引擎，默认是ES6模板字符串
+Ti.template = function(tpl, data) {
+  return tpl;
+};
+
+
+Ti.$ = function (selector, context) {
+  if (context) {
+    return context.querySelector(selector);
+  } else {
+    return document.querySelector(selector);
+  }
+};
+
+Ti.$$ = function(selector, context) {
+  if (context) {
+    return [...context.querySelectorAll(selector)];
+  } else {
+    return [...document.querySelectorAll(selector)];
+  }
+};
+
+/**
+ * **Ti.use**方法,用于为框架植入插件
+ * @method Ti.use
+ * @param {Object} plugin 传入的对象必须要有install方法
+ * @example
+ * const Plugin = {};
+ * Plugin.install = function(ti) {
+ *  // do something here
+ * } 
+ * Ti.use(Plugin);
+ */
+Ti.use = function(plugin) {
+  if (!plugin.install) throw new Error('The plugin must have install method!');
+  plugin.install(Ti);
+};
+
+Ti.directives = [];
+/**
+ * **Ti.directive**方法,用于定义指令
+ * @method Ti.direcitve
+ * @param {String} name 指令名称
+ * @param {Function} fn 指令处理函数
+ * @example 
+ * Ti.directive('focus', (ele, component) => {
+ *  // ele为指令绑定的DOM节点,component为当前节点所在的组件
+ * });
+ */
+Ti.directive = function(name, fn) {
+  Ti.directives[name] = fn;
+};
+
+
+export default Ti;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon May 15 2017 04:06:08 GMT+0800 (CST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

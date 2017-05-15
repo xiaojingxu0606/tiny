@@ -1,13 +1,26 @@
-import Q from './core';
+import HTTP from './core';
+import Interceptor from './interceptor';
+import Request from './request';
+import Response from './response';
 
 function createInstance() {
-  return new Q();
+  return new HTTP();
 }
-/**
- * 暴露在浏览器中的命名空间
- * @namespace {Object} q
- */
-const q = createInstance();
-q.create = config => createInstance(config);
 
-export default q;
+/**
+ * @alias $http
+ * @memberof Ti
+ * @see Http
+ */
+const http = createInstance();
+http.create = config => createInstance(config);
+
+/**
+ * @alias $http.Interceptor
+ * @memberof Ti
+ * @see Interceptor
+ */
+http.Interceptor = Interceptor;
+
+export default http;
+

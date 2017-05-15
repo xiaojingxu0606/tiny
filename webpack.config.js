@@ -34,21 +34,22 @@ var config = {
   ],
   resolve: {
     alias: {
-      'artTemplate': 'art-template/lib/template-web.js'
+      'artTemplate': 'art-template/lib/template-web.js',
+      'set-dom': 'set-dom/dist/set-dom.js',
     }
   }
 
 };
 
-if(ENV==="test") {
-  config.entry = "./test/index.js";
+if(ENV==="todolist") {
+  config.entry = "./examples/todolist/index.js";
   config.output = {
-    path: path.join(__dirname, 'test'),
+    path: path.join(__dirname, 'examples/todolist'),
     filename: 'bundle.js',
-    publicPath: '/test/'
+    publicPath: '/examples/todolist/'
   };
   config.module.rules[0].include = [
-    path.resolve(__dirname, "test"),
+    path.resolve(__dirname, "examples/todolist"),
     path.resolve(__dirname, "dist")
   ];
   config.module.rules.push({

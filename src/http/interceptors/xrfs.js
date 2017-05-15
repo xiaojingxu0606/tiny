@@ -1,4 +1,6 @@
 
+import Interceptor from '../interceptor';
+
 function readCookie(name) {
   const reg = new RegExp(`(?:^|;)\\s*${name}=(.*?)(;|$)`);
   const cookie = document.cookie;
@@ -15,9 +17,14 @@ function readCookie(name) {
 
 /**
  * 通用拦截器之xrfsInteceptor
+ * @ignore 
  */
-const xrfsInterceptor = {
-  fulfill: (request) => {
+
+export default class XRFSInterceptor extends Interceptor {
+  constructor() {
+    super();
+  }
+  resolve(request) {
     if (request.inBrowser) {
       // 如果同域或者允许跨域传输cookie我们可以读取xrfs,添加到请求头
       if (request.crossDomain ||
@@ -31,9 +38,7 @@ const xrfsInterceptor = {
       }
     }
     return request;
-  },
-  reject: error => Promise.reject(error),
-};
+  }
+}
 
-export default xrfsInterceptor;
 

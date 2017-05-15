@@ -1,5 +1,7 @@
 /**
  * observable 观察订阅模式
+ * @alias Ti.$observable
+ * @memberof Ti
  * @param {Object} obj 进行订阅的对象
  */
 function observable(obj) {

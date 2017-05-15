@@ -3,7 +3,9 @@ import xhr from './client/xhr';
 import content from './interceptors/content';
 import xrfs from './interceptors/xrfs';
 
-/** @default defaultOptions 默认选项 */
+/**
+ * @alias http.default
+ */
 const defaultOptions = {
   client: xhr, // 默认用户代理是xhr
   method: 'get', // 默认请求是get

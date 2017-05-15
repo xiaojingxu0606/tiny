@@ -1,18 +1,18 @@
-import Ti from "../../../dist/tiny.js";
+import Ti from "../../../../dist/tiny.js";
 import html from './index.html';
 import css from './index.styl';
 
-class Footer extends Ti.Component {
+class Head extends Ti.Component {
   constructor(data) {
     super(data);
-  }
-
-  style() {
-    return css;
   }
   render() {
     return html;
   }
 
+  style() {
+    return css;
+  }
 }
-export default Footer;
+
+export default Head;

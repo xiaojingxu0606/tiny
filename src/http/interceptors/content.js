@@ -1,14 +1,18 @@
 import { is, isNoDataMethod } from '../utils';
-
+import Interceptor from '../interceptor';
 const DEFAULT_TYPE = 'application/x-www-form-urlencoded; charset=utf-8';
 const JSON_TYPE = 'application/json; charset=utf-8';
 
 
 /**
  * 通用拦截器之contentInteceptor
+ * @ignore
  */
-const contentInterceptor = {
-  fulfill: (request) => {
+export default class ContentInterceptor extends Interceptor {
+  constructor() {
+    super();
+  }
+  resolve(request) {
     const data = request.data;
     const header = request.header;
     // 如果是FormData,不需要设置Content-Type
@@ -47,8 +51,5 @@ const contentInterceptor = {
       header.set('Content-Type', DEFAULT_TYPE);
     }
     return request;
-  },
-  reject: error => Promise.reject(error),
-};
-
-export default contentInterceptor;
+  }
+}

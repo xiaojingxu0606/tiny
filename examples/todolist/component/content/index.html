@@ -1,0 +1,17 @@
+<div class="content">
+  <ol>
+    {{each list}}
+      <li onclick="doComplete(event, {{$index}})" {{if $value.isComplete}} class="list-complete"{{/if}}>
+        <input 
+        {{if $value.isComplete}}checked{{/if}} type="checkbox" />
+        <p>{{$value.content}}</p>
+      </li>
+    {{/each}}
+  </ol>
+  <input placeholder="输入你的任务" class="content-add" 
+  type="text" onkeydown="add(event, this)" />
+
+  <p>
+    <button type="button" onclick="destoryContent(this)">销毁内容</button>
+  </p>
+</div>

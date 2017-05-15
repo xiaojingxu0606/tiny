@@ -1,8 +1,4 @@
 
-/**
- * XHR请求处理模块
- * @module XHR
- */
 import Response from '../response';
 import { isNoDataMethod } from '../utils';
 

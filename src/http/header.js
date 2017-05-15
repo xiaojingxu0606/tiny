@@ -4,6 +4,7 @@ import { trim, base64 } from './utils';
 /**
  * 通过配置构造一个请求头
  * @class Header
+ * @ignore 
  */
 
 class Header {
@@ -15,6 +16,7 @@ class Header {
    * + http basic认证添加
    * @constructor
    * @param {Object} config - 配置对象
+   * @ignore 
    */
   constructor(config) {
     this.map = {};

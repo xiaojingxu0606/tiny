@@ -12,11 +12,11 @@ function htmlScoper(html, id) {
 }
 
 // 替换自定义标签
-function replaceTags(html) {
-  let str = Ti.customTags.join("|");
-  let reg = new RegExp('<(' + str + ')\\s+([^/>]*\\s+)?/>', 'g');
-  return html.replace(reg, function(m, tag, other) {
-    return m.replace(m, '<child tag="' + tag + '" ' + (other ? other: '')  + '/>');
+function replaceTags(html, tags) {
+  let str = tags.join("|");
+  let reg = new RegExp(`<(${str})(\\s+[^/>]*)?/>|<(${str})(\\s+[^>]*)?>([\\s\\S]*?)</\\3>`, 'g');
+  return html.replace(reg, function(m, tag1, other1, tag2, other2, content) {
+      return `<child tag="${tag1 || tag2}"${other1 || other2 || ''}>${content || ''}</child>`;
   });
 }
 

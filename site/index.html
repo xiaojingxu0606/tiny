@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+   <head>
+    <title>Tiny.js</title>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta charset="UTF-8">
+    <link href="https://cdn.bootcss.com/mobi.css/2.0.0-beta.1/mobi.css" rel="stylesheet">
+    <style>
+      button {
+        outline: none;
+      }
+      nav {
+        padding: 0 100px;
+        position: relative;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, .12);
+        z-index: 999;
+      }
+      nav::before{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, .24);
+      }
+      .logo {
+        width: 120px;
+        height: 100%;
+        background-image: url(images/logo.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100px 100px;
+      }
+      .height100 {
+        height: 100%;
+      }
+      .height64 {
+        height: 64px;
+      }
+      .button {
+        background-color: #fff;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+      }
+      a.button {
+        text-decoration: none;
+      }
+      a.button:link {
+        text-decoration: none;
+      }
+      a.button:visited {
+        text-decoration: none;
+      }
+      a.button:active {
+        text-decoration: none;
+      }
+      a.button:hover {
+        text-decoration: none;
+      }
+      .flatbutton {
+        width: 88px;
+        height: 36px;
+        line-height: 36px;
+        margin-top: 14px;
+        margin-bottom: 14px;
+        border-radius: 2px;
+        color: #000;
+        -webkit-transition: background-color .4s cubic-bezier(.645,.045,.355,1);
+        -ms-transition: background-color .6s cubic-bezier(.645,.045,.355,1);
+        transition: background-color .6s cubic-bezier(.645,.045,.355,1);
+      }
+      .flatbutton:active {
+        background-color: #ebebeb;
+        
+      }
+      .flatbutton:hover {
+        background-color: #ebebeb;
+       
+      }
+
+      section {
+        background-color: #0097a7;
+        padding: 60px 10px;
+      }
+
+      .largebutton {
+        width: 130px;
+        position: relative;
+        height: 40px;
+        color: #0097a7;
+        border-radius: 2px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, .12);
+        -webkit-transition: background-color .4s cubic-bezier(.645,.045,.355,1);
+        -ms-transition: background-color .4s cubic-bezier(.645,.045,.355,1);
+        transition: background-color .4s cubic-bezier(.645,.045,.355,1);
+      }
+      .largebutton:active{
+        background-color: #ebebeb;
+      }
+      .largebutton:hover{
+        background-color: #ebebeb;
+      }
+      .largebutton::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, .24);
+      }
+      .large-title {
+        font-family: 'tiny';
+      }
+      .logowhite {
+        width: 100%;
+        height: 100%;
+        background-image: url(images/logowhite.png);
+        background-size: 135px 75px;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      @font-face {
+        font-family: 'tiny';
+        src: url('fonts/tiny.eot');
+        src:
+          url('fonts/tiny.eot') format('embedded-opentype'),
+          url('fonts/tiny.woff') format('woff'),
+          url('fonts/tiny.ttf') format('truetype'),
+          url('fonts/tiny.svg') format('svg');
+        font-weight: normal;
+        font-style: normal;
+     }
+    
+    </style>
+  </head>
+  <body>
+    <div class="flex-vertical">
+      <nav class="unit-0">
+        
+        <div class="flex-middle flex-center flex-left flex-wrap">
+          <div class="unit flex-left height64">
+              <div class="unit show-on-mobile"></div>
+              <a class="logo unit-0" href=""></a>
+              <div class="unit show-on-mobile"></div>
+          </div>
+          <div class="unit-0 flex-right flex-middle">
+
+          </div>
+          <div class="unit-0 flex-right flex-middle flex-wrap" style="width: 288px">
+              <div class="unit-1-3 unit-1-on-mobile flex-center">
+                <a class="button flatbutton">
+                  教程
+                </a>
+              </div>
+              <div class="unit-1-3 unit-1-on-mobile flex-center">
+                <a href="doc/index.html" class="button flatbutton">
+                  API
+                </a>
+              </div>
+              <div class="unit-1-3 unit-1-on-mobile flex-center">
+                <a class="button flatbutton">
+                  Demo
+                </a>
+              </div>
+          </div>
+        </div> 
+      </nav>
+      <section class="unit-0 flex-vertical flex-center" style="height: 400px; color: #fff;">
+        <div class="unit" style="font-size: 60px; width: 100%;">
+          <div class="logowhite"></div>
+        </div>
+        <div class="unit large-title flex-middle" style="font-size: 35px; text-align: center">
+          <div>轻量级组件化的现代框架</div>
+        </div>
+        <div class="unit flex-middle">
+          <button class="button largebutton">开始使用</button>
+        </div>
+      </section>
+      <footer class="unit-0 flex-vertical flex-center" style="height: 200px; padding: 24px 0">
+        <div class="unit github flex-middle">
+          <a href="">
+            <svg aria-hidden="true" height="40" version="1.1" viewBox="0 0 16 16" width="40"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          </a>
+        </div>
+        <div class="unit-0" style="height: 30px; line-height: 30px;">遵循MIT开源协议</div>
+        <div class="unit-0" style="height: 30px; line-height: 30px;">Copyright&copy; Jeffwang 2017</div>
+      </footer>
+    </div>
+  </body>
+</html>

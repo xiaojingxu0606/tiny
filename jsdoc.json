@@ -1,0 +1,22 @@
+{
+    "tag": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "source": {
+        "include": ["./src"],
+        "exclude": ["./dist", "./node_modules"],
+        "includePattern": ".+\\.(js|jsdoc|ts|es)$"
+    },
+    "opts": {
+        "encoding": "utf8", // 编码
+        "recurse": true, // 是否查询子目录
+        "destination": "./site/doc/", // 文档生成路径
+        "template": "node_modules/docdash"
+    },
+    "docdash": {
+        "static": true,
+        "sort": true
+    },
+    "plugins": ["plugins/markdown"] // 配置markdown插件
+}

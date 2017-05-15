@@ -4,6 +4,7 @@ import { parse } from './utils';
 /**
  * 响应体
  * @class Response
+ * @ignore 
  */
 class Response {
   /**
@@ -12,6 +13,7 @@ class Response {
    * @param {Number} status
    * @param {String} statusText
    * @param {Request} request
+   * @ignore 
    */
   constructor(data, status, statusText, request) {
     this.data = Response.filter(data, request);
@@ -23,6 +25,7 @@ class Response {
 
 /**
  * Response的静态方法filter,主要对数据对象过滤
+ * @ignore 
  */
 Response.filter = (data, request) => {
   if (!data) return data;

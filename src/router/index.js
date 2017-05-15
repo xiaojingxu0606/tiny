@@ -1,17 +1,11 @@
-/**
- * Route模块
- * @module route
- */
+
 const escapeReg = /[\^\$\\\.\*\+\?\(\)\[\]\{\}\|]/g;
 function regexpEscape(str) {
   return str.replace(escapeReg, '\\$&');
 }
 
-/** class Rule 路由规则类 */
+
 class Rule {
-  /**
-   * @constructor
-   */
   constructor() {
     this.defaultBase = '#!';
     this.rules = {};
@@ -19,11 +13,8 @@ class Rule {
     this.regForSplit = /\{[^{]+\}/;
     this.otherwise = function() {};
   }
-  /**
-   * 注册路由规则
-   * @param {String} url - 路由规则字符
-   * @param {Function} func - 回调函数
-   */
+  
+  //注册路由规则
   on(url, func) {
     const params = [];
     const arr = url.split(this.regForSplit);
@@ -40,10 +31,7 @@ class Rule {
     this.rules[result] = { params: params, event: func };
   }
 
-  /**
-   * 触发路由规则
-   * @param {String} url - 待触发的URL 
-   */
+  // 触发路由规则
   trigger(url) {
     const regexs = Object.keys(this.rules);
     let count = 0;
@@ -67,8 +55,15 @@ class Rule {
   }
 }
 
-/** class Route 路由控制类 */
+/**
+ * @class Route
+ * @ignore 
+ */
 class Route {
+  /**
+   * @constructor
+   * @ignore 
+   */
   constructor() {
     this.rule = new Rule();
     this.defaultBase = this.rule.defaultBase;
@@ -79,24 +74,27 @@ class Route {
   }
 
   _getRealPath(hash) {
-  const index = hash.indexOf(this.defaultBase);
-  if (index >= 0) {
-    return hash.slice(index + this.defaultBase.length);
+    const index = hash.indexOf(this.defaultBase);
+    if (index >= 0) {
+      return hash.slice(index + this.defaultBase.length);
   }
   return hash;
 }
   /**
-   * 路由注册完成之后须记得start
+   * 路由注册完成
+   * @ignore 
    */
-  start() {
-    if (window.history.length === 1) {
-      this._hashChangeHandler();
-    }
+  install() {
+    // if (window.history.length === 1) {
+    //   this._hashChangeHandler();
+    // }
     window.onhashchange = this._hashChangeHandler;
     return this;
   }
   /**
    * 注册一个URL规则
+   * @alias $route.when
+   * @memberof Ti
    * @param {String} url - 一个URL规则
    * @param {Function} callback - 匹配到规则之后的回调函数
    * @return {Route} 返回当前对象,可进行链式调用
@@ -109,6 +107,8 @@ class Route {
 
   /**
    * 当没有任何规则匹配时
+   * @alias $route.otherwise
+   * @memberof Ti
    * @param {Function} callback - 回调函数
    */
   otherwise(callback) {
@@ -118,6 +118,8 @@ class Route {
 
   /**
    * 跳转函数
+   * @alias $route.go
+   * @memberof Ti
    * @param {String} url 
    */
   go(url) {
@@ -128,5 +130,12 @@ class Route {
 
 const route = new Route();
 
+route.Route = Route;
+
+/**
+ * @alias $route
+ * @memberof Ti
+ * @see Route
+ */
 export default route;
       

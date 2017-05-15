@@ -1,7 +1,3 @@
-/**
- * JSONP请求处理模块
- * @module JSONP
- */
 
 import Response from '../response';
 

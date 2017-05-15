@@ -4,12 +4,14 @@ import { urlTransform, is, isNoDataMethod, isSameOrigin, isBrowser } from './uti
 /**
  * 构造请求体
  * @class Request
+ * @ignore 
  */
 class Request {
   /**
    * @constructor
    * @param {Header} header - 一个header对象
    * @param {Object} config - 配置对象
+   * @ignore 
    */
   constructor(header, config) {
     this.header = header || {};

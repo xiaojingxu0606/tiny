@@ -1,13 +1,10 @@
-/**
- * 这里有所有项目用到的工具方法
- * @module Utils
- */
 
 /**
  * 判断对象的类型
  * @param {String} type
  * @param {Object} value
  * @return {Boolean} true or false
+ * @ignore 
  */
 function is(type, value) {
   if (type === 'URLSearchParams') return !!URLSearchParams && value instanceof URLSearchParams;
@@ -21,6 +18,7 @@ function is(type, value) {
  * 进行深度对象克隆
  * @function merge
  * @param {Array} objs obj1, obj2, ...
+ * @ignore 
  */
 function merge(...objs) {
   const result = {};
@@ -52,6 +50,7 @@ function parseXML(data) {
  * @param {String} type - type to parse
  * @param {String} value - responseText or reponseXML
  * @return {Object} Document对象或Object或原值
+ * @ignore 
  */
 function parse(type, value) {
   let result = value;
@@ -68,6 +67,7 @@ function parse(type, value) {
  * 去除字符两端的空字符
  * @param {String} value
  * @return {String}
+ * @ignore 
  */
 function trim(value) {
   if (typeof value !== 'string') return value;
@@ -80,6 +80,7 @@ function trim(value) {
 /**
  * 是否是标准浏览器环境,参考axios的浏览器环境判断
  * @return {Boolean} true or false
+ * @ignore 
  */
 function isBrowser() {
   if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
@@ -95,6 +96,7 @@ function isBrowser() {
  * url是否为绝对路径, 参考自axios
  * @param {String} url - 需要验证的url
  * @return {Boolean} true or false
+ * @ignore 
  */
 function isAbsoluteUrl(url) {
   return (/^([a-z][a-z\d+-.]*:)?\/\//i.test(url));
@@ -108,6 +110,7 @@ function isAbsoluteUrl(url) {
  * @param {String} url - 需要连接的url
  * @param {*} baseUrl - 基url
  * @return {String} 拼接后形成的字符串
+ * @ignore 
  */
 function combieUrl(url, baseUrl) {
   return `${baseUrl.replace(/\/$/g, '')}/${url.replace(/^\//g, '')}`;
@@ -117,6 +120,7 @@ function combieUrl(url, baseUrl) {
  * 进行参数序列化
  * @param {Object} obj - 需要序列化的对象
  * @return {String} 查询字符串
+ * @ignore 
  */
 function paramSerialize(obj) {
   const query = [];
@@ -132,6 +136,7 @@ function paramSerialize(obj) {
  * @param {String} query - 需要转化为对象的query string
  * @param {Object} param - 在此对象基础上添加参数
  * @return {Object} 由参数字符串转化成的对象
+ * @ignore 
  */
 function parseQuery(query, param) {
   const p = param || {};
@@ -154,6 +159,7 @@ function parseQuery(query, param) {
  * @param {Object} param
  * @param {String} baseUrl
  * @return {String} 经过拼接,合法的URL
+ * @ignore 
  */
 function urlTransform(url, param, baseUrl) {
   let u = url;
@@ -188,6 +194,7 @@ const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=
  * Base64编码方法, 参考axios
  * @param {String} input 需要进行Base64编码的字符串
  * @return {String} base64码
+ * @ignore 
  */
 function base64(input) {
   const str = String(input);
@@ -212,6 +219,7 @@ function base64(input) {
  * 解析URL
  * @param {String} urlString 进行解析的URL
  * @return {Object} description 解析后的对象
+ * @ignore 
  */
 export function parseUrl(urlString) {
   let url = urlString;

@@ -1,4 +1,4 @@
-import Ti from "../dist/tiny.js";
+import Ti from "../../dist/tiny.js";
 import Head from "./component/head/index.js";
 import Footer from "./component/footer/index.js";
 import Content from "./component/content"
@@ -11,7 +11,18 @@ class App extends Ti.Component {
 
   constructor(data) {
     super(data);
-    this.list = ["hello", "tiny"];
+    this.list = this.data.list || [];
+  }
+
+  mounted() {
+    Ti.$http.get('/get', {responseType: 'json'})
+    .then((response) => {
+      this.list = response.data.list;
+      this.update();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   style() {
@@ -28,25 +39,18 @@ class App extends Ti.Component {
 
   render() {
     return `
-    <div id="container">
-    <Head data-logo="Tiny" />
-    <Content data="list" />
-    <p style="margin-top: 200px;">{{name}}</p>
-    <Foot />
+    <div ref="app" id="container">
+      <Head component="Head" data-logo="TodoList" />
+      <Content component="Content" data="list" />
+      <Foot />
     </div>
     `;
   }
 
 }
 
-Ti.$http.get('/get', {responseType: 'json'})
-.then(function(response) {
-  const app = new App(response.data);
-  Ti.mount(app, "body");
-})
-.catch(function(err){
-  console.log(err);
-});
+const app = new App();
+Ti.mount(app, "body");
 
 
 

@@ -33,7 +33,7 @@ function mime(req) {
 function staticHandler(req, res, fileType) {
   let filePath = req.url;
   if (req.url.slice(-1) === '/') filePath = `${req.url}index.html`;
-  filePath = path.join(process.cwd(), 'test', url.parse(filePath).pathname);
+  filePath = path.join(__dirname ,url.parse(filePath).pathname);
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.writeHead(404);
@@ -48,7 +48,7 @@ function staticHandler(req, res, fileType) {
 function get(req, res) {
   const params = url.parse(req.url);
   res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(`{"name": "jeff"}`);
+  res.end(`{"list": [{"content": "看一本书", "isComplete": false}, {"content": "跑步三小时", "isComplete": false}, {"content": "编程4小时", "isComplete": true}]}`);
 }
 
 function post(req, res) {
