@@ -190,15 +190,18 @@ Ti.makeTag(View, 'view');
  * @memberof Ti
  * @example 
  * Ti.$route
- * .when('/user/{id}', Component1)
- * .when('/page/{name}/{id}', Component2)
- * .otherwise(Component3);
+ * .when('/user/{id}', User)
+ * .when('/page/{name}/{id}', Page) 
+ * .otherwise(Index);
+ * 
  * class App {
+ * 
  *  render() {
  *    return  `
  *      <view></view>
  *    `;
  *  }
+ * 
  * }
  * 
  */
