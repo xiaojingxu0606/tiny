@@ -1,6 +1,6 @@
 {
-  "name": "tiny",
-  "version": "0.0.1",
+  "name": "tinyframework",
+  "version": "0.1.0",
   "description": "A simple javascript framework. Support reusable Components. Write by ES6.",
   "main": "dist/tiny.js",
   "scripts": {
@@ -9,12 +9,12 @@
     "build": "cross-env NODE_ENV=build webpack ",
     "build-min": "cross-env NODE_ENV=build-min webpack",
     "clean": "rm -drf ./dist && mkdir dist",
-    "doc": "rm -dr ./site/doc && jsdoc -c ./jsdoc.json",
+    "doc": "rm -dr ./site/api && jsdoc -c ./jsdoc.json",
     "doc:serve": "serve -p 3001 ./site"
   },
   "repository": {
     "type": "git",
-    "url": "https://git.oschina.net/wangjeff/tiny.git"
+    "url": "https://github.com/jeffwcx/tiny"
   },
   "keywords": [
     "tiny",
@@ -42,11 +42,10 @@
     "stylus-loader": "^3.0.1",
     "webpack": "^2.3.2"
   },
-  "author": "jeffwang <cunxuanwang@163.com>",
+  "author": "jeffone <cunxuanwang@163.com>",
   "license": "MIT",
   "dependencies": {
     "art-template": "^4.1.0",
-    "morphdom": "^2.3.2",
     "set-dom": "^7.4.2"
   }
 }

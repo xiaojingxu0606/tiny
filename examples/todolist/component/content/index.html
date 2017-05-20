@@ -5,13 +5,10 @@
         <input 
         {{if $value.isComplete}}checked{{/if}} type="checkbox" />
         <p>{{$value.content}}</p>
+        <svg onclick="delete(event, {{$index}})" t="1495270496396" class="delete" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2358" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M517.582 96.167c-230.813 0-417.924 187.111-417.924 417.924s187.111 417.924 417.924 417.924 417.924-187.111 417.924-417.924S748.395 96.167 517.582 96.167zM648.997 565.262l-79.991 0L466.159 565.262l-79.991 0c-28.283 0-51.423-23.097-51.423-51.327 0-28.23 23.14-51.327 51.423-51.327l79.991 0 102.847 0 79.991 0c28.283 0 51.424 23.097 51.424 51.327C700.42 542.165 677.28 565.262 648.997 565.262z" p-id="2359" fill="#8a8a8a"></path></svg>
       </li>
     {{/each}}
   </ol>
-  <input placeholder="输入你的任务" class="content-add" 
+  <input placeholder="输入你的任务" value="" class="content-add" 
   type="text" onkeydown="add(event, this)" />
-
-  <p>
-    <button type="button" onclick="destoryContent(this)">销毁内容</button>
-  </p>
 </div>

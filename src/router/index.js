@@ -1,4 +1,7 @@
 
+import Component from '../component';
+import Ti from '../tiny';
+
 const escapeReg = /[\^\$\\\.\*\+\?\(\)\[\]\{\}\|]/g;
 function regexpEscape(str) {
   return str.replace(escapeReg, '\\$&');
@@ -88,7 +91,9 @@ class Route {
     // if (window.history.length === 1) {
     //   this._hashChangeHandler();
     // }
-    window.onhashchange = this._hashChangeHandler;
+    window.onhashchange = () => {
+      this._hashChangeHandler();
+    };
     return this;
   }
   /**
@@ -101,7 +106,7 @@ class Route {
    */
   when(url, callback) {
     if (url.indexOf(this.defaultBase) >= 0) throw new Error(`Can not use ${defaultBase}`);
-    this.rule.on(url, func);
+    this.rule.on(url, callback);
     return this;
   }
 
@@ -112,8 +117,12 @@ class Route {
    * @param {Function} callback - 回调函数
    */
   otherwise(callback) {
-    this.rule.otherwise = func;
+    this.rule.otherwise = callback;
     return this;
+  }
+
+  start() {
+    this._hashChangeHandler();
   }
 
   /**
@@ -128,14 +137,71 @@ class Route {
   }
 }
 
-const route = new Route();
 
-route.Route = Route;
+let  renderTo = null;
+let currentComponent = null;
+
+class Router extends Route{
+
+  constructor() {
+    super();
+  }
+  _render(component, data) {
+    if (currentComponent) currentComponent.umount();
+    const Component = new component(data);
+    currentComponent = Component;
+    Ti.mount(Component, renderTo);
+  }
+  when(url, component) {
+    super.when(url, (params) => {
+      this._render(component, { $params: params });
+    });
+    return this;
+  }
+  otherwise(component) {
+    super.otherwise((url) => {
+      this._render(component, { url });
+    });
+    return this;
+  }
+}
+
+const router = new Router();
+
+
+class View extends Component {
+  constructor(data) {
+    super(data);
+  }
+  mounted () {
+    renderTo = this.refs.view;
+    router.start();
+  }
+  render() {
+    return '<div ref="view"></div>';
+  }
+}
+
+Ti.makeTag(View, 'view');
 
 /**
+ * 通过when和otherwise进行注册,然后通过view组件可以进行视图的切换
  * @alias $route
  * @memberof Ti
- * @see Route
+ * @example 
+ * Ti.$route
+ * .when('/user/{id}', Component1)
+ * .when('/page/{name}/{id}', Component2)
+ * .otherwise(Component3);
+ * class App {
+ *  render() {
+ *    return  `
+ *      <view></view>
+ *    `;
+ *  }
+ * }
+ * 
  */
-export default route;
+
+export default router;
       

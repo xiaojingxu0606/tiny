@@ -1,11 +1,15 @@
 import Ti from "../../dist/tiny.js";
-import Head from "./component/head/index.js";
-import Footer from "./component/footer/index.js";
+import Head from "./component/head";
 import Content from "./component/content"
+import Login from './component/login';
 
 Ti.makeTag(Head, "Head");
-Ti.makeTag(Footer, "Foot");
+Ti.makeTag(Login, "Login");
 Ti.makeTag(Content, "Content");
+
+Ti.$route
+.when('/login', Login)
+.otherwise(Content);
 
 class App extends Ti.Component {
 
@@ -13,18 +17,7 @@ class App extends Ti.Component {
     super(data);
     this.list = this.data.list || [];
   }
-
-  mounted() {
-    Ti.$http.get('/get', {responseType: 'json'})
-    .then((response) => {
-      this.list = response.data.list;
-      this.update();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
+  
   style() {
     return `
     #container {
@@ -41,7 +34,7 @@ class App extends Ti.Component {
     return `
     <div ref="app" id="container">
       <Head component="Head" data-logo="TodoList" />
-      <Content component="Content" data="list" />
+      <view ti-class="view"></view>
       <Foot />
     </div>
     `;

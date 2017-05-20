@@ -10,6 +10,21 @@ import XRFSInterceptor from './interceptors/xrfs';
 
 /**
  * @class
+ * @example
+ * Ti.$http
+ * .get('/request1')
+ * .then((response) => {
+ *    // 处理第一个请求
+ *    // 进行第二个请求
+ *    return Ti.$http
+ *    .post('/request2');
+ * })
+ * .then((response) => {
+ *    // 处理第二个请求
+ * })
+ * .catch((err) => {
+ *    // 处理请求所产生的错误
+ * });
  */
 class Http {
   /**

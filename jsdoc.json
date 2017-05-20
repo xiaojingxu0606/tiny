@@ -11,7 +11,7 @@
     "opts": {
         "encoding": "utf8", // 编码
         "recurse": true, // 是否查询子目录
-        "destination": "./site/doc/", // 文档生成路径
+        "destination": "./site/api/", // 文档生成路径
         "template": "node_modules/docdash"
     },
     "docdash": {

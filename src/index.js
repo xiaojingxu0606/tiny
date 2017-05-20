@@ -5,6 +5,10 @@ import Component from './component.js';
 import route from './router/index';
 import domDiff from 'set-dom';
 import http from './http/index';
+import toDirective from './directives/to';
+
+Ti.use(toDirective);
+
 /**
  * @property {Function} template 挂载模板方法属性
  * @example 

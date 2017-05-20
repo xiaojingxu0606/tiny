@@ -237,6 +237,7 @@ class Component {
   // 添加节点引用以及为所有子组件添加节点引用
   _initNodes() {
     this._addRefs();
+    this._addPlugin();
     this.children.forEach((child) => {
       child.node = Ti.$(`[${child._scopeId}]`, this.node);
       child.node && this._initNodes.call(child);
@@ -246,7 +247,7 @@ class Component {
   // 执行插件
   _addPlugin() {
     Object.keys(Ti.directives).forEach((directive) => {
-      const nodes = Ti.$$(`*[${item}]`, this.node);
+      const nodes = Ti.$$(`*[${directive}]`, this.node);
       nodes.forEach((node) => {
         if (node.hasAttribute(this._scopeId)) {
           Ti.directives[directive](node, this); // 为指令方法注入当前节点和当前组件

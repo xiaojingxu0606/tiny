@@ -2,31 +2,37 @@ import Ti from "../../../../dist/tiny.js";
 import html from './index.html';
 import css from './index.styl';
 
-class Content extends Ti.Component{
+class Content extends Ti.Component {
   constructor(data) {
     super(data);
-  }
-  mount() {
-    console.log('start mount component!');
-  }
-  beforeUpdate () {
-    console.log('start update');
-  }
-  afterUpdate() {
-    console.log('update sucess');
+    this.data.list = [];
   }
   mounted () {
-    console.log('component have mounted!');
+    Ti.$http.get('/get', {responseType: 'json'})
+    .then((response) => {
+      this.data.list = response.data.list;
+      this.update();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
-  destory() {
-    console.log('component have been destory!');
-  }
-  destoryContent(target) {
-    this.umount();
+
+  delete(evt, index) {
+    evt.stopPropagation();
+    this.data.list.splice(index, 1);
+    this.update();
   }
   doComplete(evt, index) {
-    const isComplete = this.data.list[index].isComplete;
-    this.data.list[index].isComplete = !isComplete;
+    const data = this.data;
+    const completeItem = data.list.splice(index, 1)[0];
+    
+    completeItem.isComplete = !completeItem.isComplete;
+    if (completeItem.isComplete) {
+      data.list.unshift(completeItem);
+    } else {
+      data.list.push(completeItem);
+    }
     this.update();
   }
   add(evt, target) {
