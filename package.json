@@ -1,6 +1,6 @@
 {
-  "name": "tinyframework",
-  "version": "0.1.1",
+  "name": "tijs",
+  "version": "0.1.3",
   "description": "A simple javascript framework. Support reusable Components. Write by ES6.",
   "main": "dist/tiny.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "tiny",
     "javascript",
     "framework",
-    "componets",
+    "component",
     "es6"
   ],
   "devDependencies": {
