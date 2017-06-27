@@ -1,5 +1,5 @@
 /*!
- * tinyframework v0.1.0
+ * tijs v0.1.3
  * author jeffone <cunxuanwang@163.com>
  */
 /******/ (function(modules) { // webpackBootstrap

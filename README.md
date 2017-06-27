@@ -9,8 +9,8 @@
 
 ### **教程**
 
-点击[教程](https://github.com/jeffwcx/tiny/tree/master/doc)开始学习Tiny.js
+点击[教程](https://github.com/jeffwcx/tiny/tree/master/start)开始学习Tiny.js
 
 ### **API**
 
-点击[API](http://onefe.me:8080/api/Ti.html)查看Tiny的API
+点击[API](https://jeffwcx.github.io/tiny)查看Tiny的API
