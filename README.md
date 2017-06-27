@@ -1,4 +1,4 @@
-![tiny](https://github.com/jeffwcx/tiny/blob/master/site/images/logo.png?raw=true)
+![tiny](https://github.com/jeffwcx/tiny/blob/master/docs/images/logo.png?raw=true)
 
 ### **特性**
 
